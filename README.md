@@ -20,3 +20,13 @@ The boilerplate also includes commands to save and return the image.
 
 ### The code I added is in time_series_visualizer.py
 ### bar_plot.png and box_plot.png are the outputs
+
+### test_module.py had 1 line changed
+actual = int(time_series_visualizer.df.count(numeric_only=True))
+
+became
+
+actual = int(time_series_visualizer.df.count(numeric_only=True).sum())
+
+This change had to be made as count() returns a Series which cannot be converted to an int meaning the test would always fail.
+The goal of the test was to was to check the filtering of the data was done correctly by checking that the size of the filtered data frame was 1238.
